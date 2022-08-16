@@ -20,6 +20,12 @@ public class PersonService {
 
     private final PersonRepository personRepository;
 
+    public PersonDto save(PersonDto personDto) {
+        Person person = PersonMapper.mapTo(personDto);
+        personRepository.save(person);
+        return personDto;
+    }
+
     public Page<PersonDto> findPersonWithPagination(Pageable pageable, PersonSearch personSearch){
         if (personSearch.getAge() == null){
             personSearch.setAge("");

@@ -1,5 +1,6 @@
 package com.personlist.person.controller;
 
+import com.personlist.person.model.dto.PersonDto;
 import com.personlist.person.model.dto.PersonSearch;
 import com.personlist.person.service.PersonService;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,11 @@ public class PersonController {
 
     public PersonController(PersonService personService){
         this.personService = personService;
+    }
+
+    @PostMapping("/public/person/save")
+    public ResponseEntity<PersonDto> save(@RequestBody PersonDto personDto){
+        return ResponseEntity.ok(personService.save(personDto));
     }
 
     @PostMapping("/public/person")
