@@ -14,6 +14,6 @@ public interface PersonRepository extends JpaRepository<Person,Long> {
             "and (:city = '' or upper_tr(p.city) like upper_tr(concat('%',:city,'%')))" +
             "and (:district = '' or upper_tr(p.district) like upper_tr(concat('%',:district,'%')))" +
             "and (:militaryStatus = '' or upper_tr(p.militaryStatus) like upper_tr(concat('%',:militaryStatus,'%')))")
-    Page<Person> findAll(String age, String gender,String educationStatus,String city,String district,String militaryStatus, Pageable pageable);
+    Page<Person> findAllPerson(String age, String gender,String educationStatus,String city,String district,String militaryStatus, Pageable pageable);
 
 }
