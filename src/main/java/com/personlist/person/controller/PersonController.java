@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PersonController {
+public class PersonController extends BaseController{
 
     private final PersonService personService;
 
@@ -18,12 +18,12 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping("/public/person/save")
+    @PostMapping(PUBLIC_SAVE_PERSON)
     public ResponseEntity<PersonDto> save(@RequestBody PersonDto personDto){
         return ResponseEntity.ok(personService.save(personDto));
     }
 
-    @PostMapping("/public/person")
+    @PostMapping(PUBLIC_FIND_ALL_PERSONS)
     public ResponseEntity getWorkersWithSort(Pageable pageable, @RequestBody PersonSearch personSearch){
         return ResponseEntity.ok(personService.findPersonWithPagination(pageable,personSearch));
     }
