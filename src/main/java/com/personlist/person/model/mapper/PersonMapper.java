@@ -40,6 +40,18 @@ public class PersonMapper {
         return person;
     }
 
+    public static Person updatePerson(Person entity, PersonDto dto){
+        entity.setId(dto.getId());
+        entity.setNameSurname(dto.getNameSurname());
+        entity.setGender(dto.getGender());
+        entity.setAge(dto.getAge());
+        entity.setEducationStatus(dto.getEducationStatus());
+        entity.setCity(dto.getCity());
+        entity.setDistrict(dto.getDistrict());
+        entity.setMilitaryStatus(dto.getMilitaryStatus());
+        return entity;
+    }
+
     public static List<PersonDto> mapToList(List<Person> dtos){
         if(dtos == null){
             return null;

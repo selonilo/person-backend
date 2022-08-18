@@ -5,9 +5,7 @@ import com.personlist.person.model.dto.PersonSearch;
 import com.personlist.person.service.PersonService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PersonController extends BaseController{
@@ -26,5 +24,15 @@ public class PersonController extends BaseController{
     @PostMapping(PUBLIC_FIND_ALL_PERSONS)
     public ResponseEntity getWorkersWithSort(Pageable pageable, @RequestBody PersonSearch personSearch){
         return ResponseEntity.ok(personService.findPersonWithPagination(pageable,personSearch));
+    }
+
+    @DeleteMapping(PUBLIC_DELETE_PERSON+"/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable(value = "id",required = true) Long id){
+        return ResponseEntity.ok(personService.delete(id));
+    }
+
+    @PostMapping(PUBLIC_UPDATE_PERSON)
+    public ResponseEntity<PersonDto> update(@RequestBody PersonDto personDto){
+        return ResponseEntity.ok(personService.update(personDto));
     }
 }

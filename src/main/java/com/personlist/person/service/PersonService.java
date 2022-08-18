@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+
 @Slf4j
 @Service
 @Transactional
@@ -25,6 +27,20 @@ public class PersonService {
         personRepository.save(person);
         return personDto;
     }
+
+    public PersonDto update(PersonDto personDto) {
+        Person person= personRepository.findById(personDto.getId())
+                .orElseThrow(() -> new EntityNotFoundException());
+        PersonMapper.updatePerson(person, personDto);
+        personRepository.save(person);
+        return personDto;
+    }
+
+    public Boolean delete(Long id) {
+        personRepository.deleteById(id);
+        return true;
+    }
+
 
     public Page<PersonDto> findPersonWithPagination(Pageable pageable, PersonSearch personSearch){
         if (personSearch.getAge() == null){
