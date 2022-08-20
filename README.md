@@ -7,7 +7,7 @@
 ## Crud işlemleri ve filter işlemi yapılabilmektedir.
 
 ## Örnek data eklemek için save servisi kullanılmıştır. Postman üzerinden verilerin kaydedilmesi sağlanmıştır. Örnek save servis kullanımı;
-{
+### {
     "id":10,
     "nameSurname": "Salih Çetin",
     "gender": "ERKEK",
